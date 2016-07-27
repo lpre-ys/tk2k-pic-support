@@ -1,0 +1,7 @@
+{
+  "name": "vendor_library",
+  "content": {
+    "./node_modules/mithril/mithril.js": 1,
+    "./node_modules/webpack/buildin/module.js": 2
+  }
+}

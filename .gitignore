@@ -35,3 +35,13 @@ jspm_packages
 
 # Optional REPL history
 .node_repl_history
+
+# for github pages
+js/
+test/
+.eslint*
+.gitignore
+karma.conf.js
+webpack.config.js
+webpack.dll.config.js
+package.json
