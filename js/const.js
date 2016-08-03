@@ -1,6 +1,6 @@
 const Const = {
   window: {
-    w: 360,
+    w: 320,
     h: 240
   },
   mode: {
