@@ -50,7 +50,7 @@
 	
 	var _mithril2 = _interopRequireDefault(_mithril);
 	
-	var _component = __webpack_require__(5);
+	var _component = __webpack_require__(3);
 	
 	var _component2 = _interopRequireDefault(_component);
 	
@@ -84,128 +84,11 @@
 	
 	var _mithril2 = _interopRequireDefault(_mithril);
 	
-	var _const = __webpack_require__(4);
-	
-	var _const2 = _interopRequireDefault(_const);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	class Vm {
-	  constructor() {
-	    this.result = [];
-	    this.xMode = _mithril2.default.prop(_const2.default.mode.center);
-	    this.yMode = _mithril2.default.prop(_const2.default.mode.center);
-	    this.top = _mithril2.default.prop(0);
-	    this.bottom = _mithril2.default.prop(0);
-	    this.left = _mithril2.default.prop(0);
-	    this.right = _mithril2.default.prop(0);
-	    this.number = _mithril2.default.prop(1);
-	  }
-	
-	  loadEnd(e) {
-	    if (e.target.readyState == FileReader.DONE) {
-	      const file = e.target.result;
-	      const img = new Image();
-	      img.src = file;
-	      this.result.push({
-	        name: e.target.filename,
-	        width: img.width,
-	        height: img.height
-	      });
-	    }
-	    _mithril2.default.endComputation();
-	  }
-	
-	  getOutput() {
-	    return this.result.map(({ name, width, height }) => {
-	      return `Picture("${ Vm.removeExt(name) }", ${ this.number() }, 0, ${ this.getX(width) }, ${ this.getY(height) }, 0, 100, 0, 1, 100, 100, 100, 100, 0, 0)`;
-	    }).join("\n");
-	  }
-	
-	  getX(width) {
-	    const sx = parseInt(this.left());
-	    const aw = _const2.default.window.w - sx - parseInt(this.right());
-	    if (this.xMode() == _const2.default.mode.center) {
-	      return Math.floor(aw / 2) + sx;
-	    }
-	    if (this.xMode() == _const2.default.mode.start) {
-	      return Math.floor(width / 2) + sx;
-	    }
-	    if (this.xMode() == _const2.default.mode.end) {
-	      return Math.floor(aw - width / 2) + sx;
-	    }
-	
-	    throw new Error('x mode error');
-	  }
-	
-	  getY(height) {
-	    const sy = parseInt(this.top());
-	    const sh = _const2.default.window.h - sy - parseInt(this.bottom());
-	    if (this.yMode() == _const2.default.mode.center) {
-	      return Math.floor(sh / 2) + sy;
-	    }
-	    if (this.yMode() == _const2.default.mode.start) {
-	      return Math.floor(height / 2) + sy;
-	    }
-	    if (this.yMode() == _const2.default.mode.end) {
-	      return Math.floor(sh - height / 2) + sy;
-	    }
-	
-	    throw new Error('x mode error');
-	  }
-	
-	  clear() {
-	    this.result = [];
-	  }
-	
-	  static removeExt(filename) {
-	    return filename.substr(0, filename.lastIndexOf('.'));
-	  }
-	}
-	exports.default = Vm;
-
-/***/ },
-/* 4 */
-/***/ function(module, exports) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	const Const = {
-	  window: {
-	    w: 360,
-	    h: 240
-	  },
-	  mode: {
-	    center: 0,
-	    start: 1,
-	    end: 2
-	  }
-	};
-	
-	exports.default = Const;
-
-/***/ },
-/* 5 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _mithril = __webpack_require__(1);
-	
-	var _mithril2 = _interopRequireDefault(_mithril);
-	
-	var _vm = __webpack_require__(3);
+	var _vm = __webpack_require__(4);
 	
 	var _vm2 = _interopRequireDefault(_vm);
 	
-	var _const = __webpack_require__(4);
+	var _const = __webpack_require__(5);
 	
 	var _const2 = _interopRequireDefault(_const);
 	
@@ -309,6 +192,123 @@
 	};
 	
 	exports.default = component;
+
+/***/ },
+/* 4 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _mithril = __webpack_require__(1);
+	
+	var _mithril2 = _interopRequireDefault(_mithril);
+	
+	var _const = __webpack_require__(5);
+	
+	var _const2 = _interopRequireDefault(_const);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	class Vm {
+	  constructor() {
+	    this.result = [];
+	    this.xMode = _mithril2.default.prop(_const2.default.mode.center);
+	    this.yMode = _mithril2.default.prop(_const2.default.mode.center);
+	    this.top = _mithril2.default.prop(0);
+	    this.bottom = _mithril2.default.prop(0);
+	    this.left = _mithril2.default.prop(0);
+	    this.right = _mithril2.default.prop(0);
+	    this.number = _mithril2.default.prop(1);
+	  }
+	
+	  loadEnd(e) {
+	    if (e.target.readyState == FileReader.DONE) {
+	      const file = e.target.result;
+	      const img = new Image();
+	      img.src = file;
+	      this.result.push({
+	        name: e.target.filename,
+	        width: img.width,
+	        height: img.height
+	      });
+	    }
+	    _mithril2.default.endComputation();
+	  }
+	
+	  getOutput() {
+	    return this.result.map(({ name, width, height }) => {
+	      return `Picture("${ Vm.removeExt(name) }", ${ this.number() }, 0, ${ this.getX(width) }, ${ this.getY(height) }, 0, 100, 0, 1, 100, 100, 100, 100, 0, 0)`;
+	    }).join("\n");
+	  }
+	
+	  getX(width) {
+	    const sx = parseInt(this.left());
+	    const aw = _const2.default.window.w - sx - parseInt(this.right());
+	    if (this.xMode() == _const2.default.mode.center) {
+	      return Math.floor(aw / 2) + sx;
+	    }
+	    if (this.xMode() == _const2.default.mode.start) {
+	      return Math.floor(width / 2) + sx;
+	    }
+	    if (this.xMode() == _const2.default.mode.end) {
+	      return Math.floor(aw - width / 2) + sx;
+	    }
+	
+	    throw new Error('x mode error');
+	  }
+	
+	  getY(height) {
+	    const sy = parseInt(this.top());
+	    const sh = _const2.default.window.h - sy - parseInt(this.bottom());
+	    if (this.yMode() == _const2.default.mode.center) {
+	      return Math.floor(sh / 2) + sy;
+	    }
+	    if (this.yMode() == _const2.default.mode.start) {
+	      return Math.floor(height / 2) + sy;
+	    }
+	    if (this.yMode() == _const2.default.mode.end) {
+	      return Math.floor(sh - height / 2) + sy;
+	    }
+	
+	    throw new Error('x mode error');
+	  }
+	
+	  clear() {
+	    this.result = [];
+	  }
+	
+	  static removeExt(filename) {
+	    return filename.substr(0, filename.lastIndexOf('.'));
+	  }
+	}
+	exports.default = Vm;
+
+/***/ },
+/* 5 */
+/***/ function(module, exports) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	const Const = {
+	  window: {
+	    w: 320,
+	    h: 240
+	  },
+	  mode: {
+	    center: 0,
+	    start: 1,
+	    end: 2
+	  }
+	};
+	
+	exports.default = Const;
 
 /***/ }
 /******/ ]);
