@@ -11,6 +11,7 @@ export default class Vm {
     this.left = m.prop(0);
     this.right = m.prop(0);
     this.number = m.prop(1);
+    this.transparent = m.prop(0);
   }
 
   loadEnd(e) {
@@ -29,7 +30,8 @@ export default class Vm {
 
   getOutput() {
     return this.result.map(({name, width, height}) => {
-      return `Picture("${Vm.removeExt(name)}", ${this.number()}, 0, ${this.getX(width)}, ${this.getY(height)}, 0, 100, 0, 1, 100, 100, 100, 100, 0, 0)`;
+      // Picture("ファイル名", number, type, x, y, connect, zoom, opacity1, transparent, r, g, b, s, effect, quantity, opacity2)
+      return `Picture("${Vm.removeExt(name)}", ${this.number()}, 0, ${this.getX(width)}, ${this.getY(height)}, 0, 100, 0, ${this.transparent() ? 1 : 0}, 100, 100, 100, 100, 0, 0)`;
     }).join("\n");
   }
 

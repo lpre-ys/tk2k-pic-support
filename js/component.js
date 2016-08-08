@@ -129,15 +129,27 @@ const component = {
             })
           ])
         ]),
-        m('.number', [
-          m('label', [
-            'ピクチャ番号: ',
-            m('input', {
-              type: 'number',
-              value: vm.number(),
-              onchange: m.withAttr('value', vm.number),
-              onkeyup: m.withAttr('value', vm.number)
-            })
+        m('.other', [
+          m('.number', [
+            m('label', [
+              'ピクチャ番号: ',
+              m('input', {
+                type: 'number',
+                value: vm.number(),
+                onchange: m.withAttr('value', vm.number),
+                onkeyup: m.withAttr('value', vm.number)
+              })
+            ])
+          ]),
+          m('.transparent', [
+            m('label', [
+              '透過有無: ',
+              m('input', {
+                type: 'checkbox',
+                checked: vm.transparent(),
+                onclick: m.withAttr('checked', vm.transparent)
+              })
+            ])
           ])
         ]),
         m('button.clear', {
