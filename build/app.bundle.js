@@ -175,12 +175,16 @@
 	      value: vm.right(),
 	      onchange: _mithril2.default.withAttr('value', vm.right),
 	      onkeyup: _mithril2.default.withAttr('value', vm.right)
-	    })])]), (0, _mithril2.default)('.number', [(0, _mithril2.default)('label', ['ピクチャ番号: ', (0, _mithril2.default)('input', {
+	    })])]), (0, _mithril2.default)('.other', [(0, _mithril2.default)('.number', [(0, _mithril2.default)('label', ['ピクチャ番号: ', (0, _mithril2.default)('input', {
 	      type: 'number',
 	      value: vm.number(),
 	      onchange: _mithril2.default.withAttr('value', vm.number),
 	      onkeyup: _mithril2.default.withAttr('value', vm.number)
-	    })])]), (0, _mithril2.default)('button.clear', {
+	    })])]), (0, _mithril2.default)('.transparent', [(0, _mithril2.default)('label', ['透過有無: ', (0, _mithril2.default)('input', {
+	      type: 'checkbox',
+	      checked: vm.transparent(),
+	      onclick: _mithril2.default.withAttr('checked', vm.transparent)
+	    })])])]), (0, _mithril2.default)('button.clear', {
 	      onclick: vm.clear.bind(vm)
 	    }, 'clear')]), (0, _mithril2.default)('textarea.output', {
 	      readonly: 'readonly',
@@ -223,6 +227,7 @@
 	    this.left = _mithril2.default.prop(0);
 	    this.right = _mithril2.default.prop(0);
 	    this.number = _mithril2.default.prop(1);
+	    this.transparent = _mithril2.default.prop(0);
 	  }
 	
 	  loadEnd(e) {
@@ -241,7 +246,8 @@
 	
 	  getOutput() {
 	    return this.result.map(({ name, width, height }) => {
-	      return `Picture("${ Vm.removeExt(name) }", ${ this.number() }, 0, ${ this.getX(width) }, ${ this.getY(height) }, 0, 100, 0, 1, 100, 100, 100, 100, 0, 0)`;
+	      // Picture("ファイル名", number, type, x, y, connect, zoom, opacity1, transparent, r, g, b, s, effect, quantity, opacity2)
+	      return `Picture("${ Vm.removeExt(name) }", ${ this.number() }, 0, ${ this.getX(width) }, ${ this.getY(height) }, 0, 100, 0, ${ this.transparent() ? 1 : 0 }, 100, 100, 100, 100, 0, 0)`;
 	    }).join("\n");
 	  }
 	
